@@ -6,8 +6,11 @@ package org.mozilla.focus.fragment
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.TextUtils
@@ -147,12 +150,18 @@ class UrlInputFragment :
 
         vlcbutton.setOnClickListener(View.OnClickListener {
 
+            val packageManager = context.packageManager
+
+            val list = packageManager.getLaunchIntentForPackage("org.videolan.vlc")
+            startActivity(list);
 
         })
 
         return view;
 
     }
+
+
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         listOf(dismissView, clearView, searchView).forEach { it.setOnClickListener(this)}
