@@ -6,7 +6,9 @@ package org.mozilla.focus.fragment
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Typeface
@@ -43,6 +45,7 @@ import org.mozilla.focus.utils.UrlUtils
 import org.mozilla.focus.utils.ViewUtils
 import org.mozilla.focus.whatsnew.WhatsNew
 import org.mozilla.focus.widget.InlineAutocompleteEditText
+import kotlin.math.sign
 
 /**
  * Fragment for displaying the URL input controls.
@@ -153,9 +156,35 @@ class UrlInputFragment :
 
         vlcfab.setOnClickListener(View.OnClickListener {
             val packageManager = context.packageManager
+            try{
+                val list = packageManager.getLaunchIntentForPackage("org.videolan.vlc")
+                startActivity(list);
+            }
+            catch (e: NullPointerException){
+                val dialogBuilder = AlertDialog.Builder(activity)
 
-            val list = packageManager.getLaunchIntentForPackage("org.videolan.vlc")
-            startActivity(list);
+
+                dialogBuilder.setTitle("VLC not Instaled")
+                dialogBuilder.setMessage("Click OK to download from google playstore")
+                dialogBuilder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, whichButton ->
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse("https://play.google.com/store/apps/details?id=org.videolan.vlc&hl=en")
+                    context.startActivity(intent)
+                  dialog.dismiss()
+                    whichButton.sign
+
+
+                })
+                dialogBuilder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, whichButton ->
+                    //pass
+                    whichButton.sign
+                    dialog.dismiss()
+                })
+
+
+                dialogBuilder.show()
+            }
+
 
         })
 
