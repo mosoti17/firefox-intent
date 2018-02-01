@@ -18,11 +18,8 @@
         android:layout_marginTop="81dp"
         android:orientation="vertical"
         app:animate="true">
-        <Button
-            android:layout_width="wrap_content"
-            android:id="@+id/vlcbutton"
-            android:layout_height="wrap_content"
-            android:text="Vlc"/>
+
+
 
         <ImageView
             android:layout_width="wrap_content"
@@ -42,6 +39,15 @@
             android:textColor="#eeeeee"
             android:textSize="14sp"
             android:focusable="false" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/vlcfab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="15dp"
+            />
+
+
 
     </org.mozilla.focus.widget.ResizableKeyboardLinearLayout>
 
@@ -165,5 +171,7 @@
             android:background="#33ffffff" />
 
     </FrameLayout>
+
+
 
 </FrameLayout>

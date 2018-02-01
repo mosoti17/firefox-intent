@@ -12,6 +12,7 @@ import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.StyleSpan
@@ -146,16 +147,18 @@ class UrlInputFragment :
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
        val  view: View = inflater.inflate(R.layout.fragment_urlinput, container, false)
 
-        val vlcbutton: Button = view.findViewById(R.id.vlcbutton)
 
-        vlcbutton.setOnClickListener(View.OnClickListener {
 
+        val vlcfab: FloatingActionButton = view.findViewById(R.id.vlcfab)
+
+        vlcfab.setOnClickListener(View.OnClickListener {
             val packageManager = context.packageManager
 
             val list = packageManager.getLaunchIntentForPackage("org.videolan.vlc")
             startActivity(list);
 
         })
+
 
         return view;
 
