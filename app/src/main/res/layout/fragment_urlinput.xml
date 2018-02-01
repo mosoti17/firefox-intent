@@ -41,6 +41,9 @@
             android:focusable="false" />
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/vlcfab"
+            app:backgroundTint="#FFF"
+            android:src="@drawable/vlc"
+            android:scaleType="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
